@@ -1,10 +1,7 @@
 require 'byebug'
 require 'faraday'
 require 'json'
-
-HTTP_SUCCESS = 200
-HTTP_UNPROCESSABLE = 422
-BASE_URL = 'http://localhost:3000' # Modify as needed
+require 'config'
 
 def reset_db
   system 'pg_restore --data-only glexport_development < glexport_development'

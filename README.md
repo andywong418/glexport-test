@@ -12,7 +12,7 @@ Instructions
 2. Create your sample application, using the database dump `glexport_development`
 3. Perform the following one time setup steps to get the spec runner working
   1. Navigate to the project root
-  2. Modify `config.rb` if necessary
+  2. Modify `spec/config.rb` if necessary
   3. Install ruby if necessary
   4. Install the `bundler` gem if necessary
   5. Run `bundle install`
