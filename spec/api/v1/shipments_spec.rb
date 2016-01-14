@@ -4,7 +4,8 @@ require 'json'
 require 'config'
 
 def reset_db
-  system 'pg_restore --data-only glexport_development < glexport_development'
+  puts RESET_DB_COMMAND
+  system RESET_DB_COMMAND
 end
 
 def http

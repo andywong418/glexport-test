@@ -1,0 +1,162 @@
+-- MySQL dump 10.13  Distrib 5.6.26, for osx10.10 (x86_64)
+--
+-- Host: localhost    Database: glexport_development
+-- ------------------------------------------------------
+-- Server version	5.6.26
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `companies`
+--
+
+DROP TABLE IF EXISTS `companies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `companies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `companies`
+--
+
+LOCK TABLES `companies` WRITE;
+/*!40000 ALTER TABLE `companies` DISABLE KEYS */;
+INSERT INTO `companies` VALUES (1,'glexport','2016-01-14 01:38:29','2016-01-14 01:38:29'),(2,'yalmart','2016-01-14 01:38:29','2016-01-14 01:38:29'),(3,'dostco','2016-01-14 01:38:29','2016-01-14 01:38:29');
+/*!40000 ALTER TABLE `companies` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sku` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `company_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `products`
+--
+
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (1,'shoe1','shoes',2,'2016-01-14 01:38:36','2016-01-14 01:38:36'),(2,'pant1','pants',2,'2016-01-14 01:38:36','2016-01-14 01:38:36'),(3,'dron1','drone',2,'2016-01-14 01:38:36','2016-01-14 01:38:36'),(4,'bicy1','bicycle',3,'2016-01-14 01:38:36','2016-01-14 01:38:36');
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `schema_migrations`
+--
+
+DROP TABLE IF EXISTS `schema_migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `schema_migrations` (
+  `version` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `schema_migrations`
+--
+
+LOCK TABLES `schema_migrations` WRITE;
+/*!40000 ALTER TABLE `schema_migrations` DISABLE KEYS */;
+INSERT INTO `schema_migrations` VALUES ('20160106183921'),('20160106185339'),('20160113181126'),('20160113181244'),('20160113203742');
+/*!40000 ALTER TABLE `schema_migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `shipment_products`
+--
+
+DROP TABLE IF EXISTS `shipment_products`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `shipment_products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `shipment_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `shipment_products`
+--
+
+LOCK TABLES `shipment_products` WRITE;
+/*!40000 ALTER TABLE `shipment_products` DISABLE KEYS */;
+INSERT INTO `shipment_products` VALUES (1,1,1,123,'2016-01-14 01:38:36','2016-01-14 01:38:36'),(2,2,1,234,'2016-01-14 01:38:36','2016-01-14 01:38:36'),(3,3,2,345,'2016-01-14 01:38:36','2016-01-14 01:38:36'),(4,2,3,456,'2016-01-14 01:38:36','2016-01-14 01:38:36'),(5,4,4,1,'2016-01-14 01:38:36','2016-01-14 01:38:36'),(6,4,5,2,'2016-01-14 01:38:36','2016-01-14 01:38:36'),(7,4,6,3,'2016-01-14 01:38:36','2016-01-14 01:38:36'),(8,4,7,4,'2016-01-14 01:38:36','2016-01-14 01:38:36'),(9,4,8,5,'2016-01-14 01:38:36','2016-01-14 01:38:36'),(10,4,9,6,'2016-01-14 01:38:36','2016-01-14 01:38:36');
+/*!40000 ALTER TABLE `shipment_products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `shipments`
+--
+
+DROP TABLE IF EXISTS `shipments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `shipments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `company_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `international_transportation_mode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `international_departure_date` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_shipments_on_company_id` (`company_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `shipments`
+--
+
+LOCK TABLES `shipments` WRITE;
+/*!40000 ALTER TABLE `shipments` DISABLE KEYS */;
+INSERT INTO `shipments` VALUES (1,'yalmart apparel from china',2,'2016-01-14 01:38:29','2016-01-14 01:38:29','ocean','2015-01-01'),(2,'yalmart drones from china',2,'2016-01-14 01:38:29','2016-01-14 01:38:29','ocean','2015-01-03'),(3,'yalmart apparel from mexico',2,'2016-01-14 01:38:29','2016-01-14 01:38:29','truck','2015-01-02'),(4,'dostco bicycles from mexico shipment 0',3,'2016-01-14 01:38:29','2016-01-14 01:38:29','truck','2015-01-01'),(5,'dostco bicycles from mexico shipment 1',3,'2016-01-14 01:38:29','2016-01-14 01:38:29','truck','2015-01-02'),(6,'dostco bicycles from mexico shipment 2',3,'2016-01-14 01:38:29','2016-01-14 01:38:29','truck','2015-01-03'),(7,'dostco bicycles from mexico shipment 3',3,'2016-01-14 01:38:29','2016-01-14 01:38:29','truck','2015-01-04'),(8,'dostco bicycles from mexico shipment 4',3,'2016-01-14 01:38:29','2016-01-14 01:38:29','truck','2015-01-05'),(9,'dostco bicycles from mexico shipment 5',3,'2016-01-14 01:38:29','2016-01-14 01:38:29','truck','2015-01-06');
+/*!40000 ALTER TABLE `shipments` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2016-01-13 17:53:04
