@@ -21,3 +21,81 @@ Instructions
 
 What we're looking for
 ----------------------
+
+We'd like you to strike a balance between maintainability and speed, with a mild preference towards maintainability. (After all, we've got to read this code to judge it)
+
+Don't worry too much about where it falls in the spectrum though; it's more important that when we talk about your code that you recognize the tradeoffs you made and what you can cut/add if asked to move in either direction.
+
+In particular, if there's a (well respected) library or framework that you would like to use as part of your implementation, please use it. We're here to make working software that accommodates (some frankly insane) business logic, not to reimplement bcrypt.
+
+The rspec test
+--------------
+
+After resetting the database, the [rspec test](https://github.com/flexport/glexport-test/blob/master/spec/api/v1/shipments_spec.rb) pings `GET /api/v1/shipments` with various parameters and examines the json response. The spec can be split out five sections:
+- Examining the contents of the json for a single record
+- Sorting
+- Filtering
+- Pagination
+- Error Handling
+
+The desired output as defined in the "contents of a single record" section deliberately contains some questionable implementation choices. Please accommodate the desired output and we can discuss the pros and cons of the given json structure.
+
+The Database and Schema
+-----------------------
+
+The sample database provided consists of four tables:
+- companies
+- shipments
+- products
+- shipment_products
+
+A company has no association columns.
+
+Both shipments and products have a `company_id` (belong to a company).
+
+The shipment_products table is a join table that connects shipments and products, and thus has both a `product_id` and `company_id`.
+
+```
+glexport_development=# \d+ companies
+Table "public.companies"
+   Column   |            Type
+------------+-----------------------------
+ id         | integer
+ name       | character varying
+ created_at | timestamp without time zone
+ updated_at | timestamp without time zone
+
+glexport_development=# \d+ shipments
+Table "public.shipments"
+              Column               |            Type
+-----------------------------------+-----------------------------
+ id                                | integer
+ name                              | character varying
+ company_id                        | integer
+ international_transportation_mode | character varying
+ international_departure_date      | date
+ created_at                        | timestamp without time zone
+ updated_at                        | timestamp without time zone
+
+glexport_development=# \d+ products
+Table "public.products"
+   Column    |            Type
+-------------+-----------------------------
+ id          | integer
+ sku         | character varying
+ description | character varying
+ company_id  | integer
+ created_at  | timestamp without time zone
+ updated_at  | timestamp without time zone
+
+glexport_development=# \d+ shipment_products
+Table "public.shipment_products"
+   Column    |            Type
+-------------+-----------------------------
+ id          | integer
+ product_id  | integer
+ shipment_id | integer
+ quantity    | integer
+ created_at  | timestamp without time zone
+ updated_at  | timestamp without time zone
+```
