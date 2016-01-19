@@ -1,9 +1,11 @@
 glexport-test
 =============
 
-**glexport-test** is the backend focused take home interview project for Flexport Engineering. The Flexport backend is written in Ruby on Rails, and while its influence is obvious, this project is designed to be framework agnostic.
+**glexport-test** is the backend focused take home interview project for Flexport Engineering.
 
-Given a database with already seeded tables and data, please create a `GET index` endpoint `/api/v1/shipments` according to the specification as described in `api/v1/shipments_spec.rb`
+Given a database with already seeded tables and data, please create a database-backed web application server that responds to a URL and returns json. More specifically, your web server will respond to the `GET index` endpoint `/api/v1/shipments` and return data according to the specification as described in `api/v1/shipments_spec.rb`
+
+The Flexport backend is written in Ruby on Rails, and while its influence is obvious, this project is designed to be language and framework agnostic. Your web server can be written in Python with Django/Flask, Javascript with Node+Express, or something more exotic. The tests are written in rspec+Ruby, but should be very readable even if you don't know any Ruby: All they do is ping a URL and inspect the json response.
 
 Instructions
 ------------
